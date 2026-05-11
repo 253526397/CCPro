@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C \"D:/huangjin/workspace/NewProject\" add docs/superpowers/specs/2026-05-11-game-architecture-design.md)",
+      "Bash(git -C D:/huangjin/workspace/NewProject commit -m 'docs: add game architecture design spec')",
+      "Bash(git -C \"D:/huangjin/workspace/NewProject\" add docs/superpowers/plans/2026-05-11-game-architecture.md)",
+      "Bash(git -C D:/huangjin/workspace/NewProject commit -m 'docs: add architecture implementation plan \\(14 tasks\\)')",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(npm install *)",
+      "Bash(npx vitest *)"
+    ]
+  }
+}
