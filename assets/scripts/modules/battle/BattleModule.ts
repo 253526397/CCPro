@@ -9,10 +9,10 @@ export enum BattleState {
   FINISHED = 'finished',
 }
 
-export class BattleSystem implements IGameModule {
-  private static _inst: BattleSystem;
-  static get inst(): BattleSystem {
-    if (!this._inst) this._inst = new BattleSystem();
+export class BattleModule implements IGameModule {
+  private static _inst: BattleModule;
+  static get inst(): BattleModule {
+    if (!this._inst) this._inst = new BattleModule();
     return this._inst;
   }
 

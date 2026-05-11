@@ -4,10 +4,10 @@ import { IGameModule } from '../../core/IGameModule';
 import { IPlatform } from '../../platform/IPlatform';
 import { ShopEvents } from '../../events';
 
-export class ShopSystem implements IGameModule {
-  private static _inst: ShopSystem;
-  static get inst(): ShopSystem {
-    if (!this._inst) this._inst = new ShopSystem();
+export class ShopModule implements IGameModule {
+  private static _inst: ShopModule;
+  static get inst(): ShopModule {
+    if (!this._inst) this._inst = new ShopModule();
     return this._inst;
   }
 

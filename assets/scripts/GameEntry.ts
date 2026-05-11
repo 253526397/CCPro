@@ -5,14 +5,14 @@ import { ConfigService } from './core/ConfigService';
 import { HotfixManager } from './core/HotfixManager';
 import { IGameModule } from './core/IGameModule';
 import { IPlatform } from './platform/IPlatform';
-import { ChestSystem } from './modules/chest/ChestSystem';
-import { BattleSystem } from './modules/battle/BattleSystem';
-import { EquipSystem } from './modules/equip/EquipSystem';
-import { HeroSystem } from './modules/hero/HeroSystem';
-import { StageSystem } from './modules/stage/StageSystem';
-import { ShopSystem } from './modules/shop/ShopSystem';
-import { QuestSystem } from './modules/quest/QuestSystem';
-import { SkillSystem } from './modules/skill/SkillSystem';
+import { ChestModule } from './modules/chest/ChestModule';
+import { BattleModule } from './modules/battle/BattleModule';
+import { EquipModule } from './modules/equip/EquipModule';
+import { HeroModule } from './modules/hero/HeroModule';
+import { StageModule } from './modules/stage/StageModule';
+import { ShopModule } from './modules/shop/ShopModule';
+import { QuestModule } from './modules/quest/QuestModule';
+import { SkillModule } from './modules/skill/SkillModule';
 
 const { ccclass } = _decorator;
 
@@ -29,14 +29,14 @@ export class GameEntry extends Component {
   /** 注册所有业务模块（按依赖顺序） */
   private initModules(): void {
     this.modules = [
-      ChestSystem.inst,
-      BattleSystem.inst,
-      EquipSystem.inst,
-      HeroSystem.inst,
-      StageSystem.inst,
-      ShopSystem.inst,
-      QuestSystem.inst,
-      SkillSystem.inst,
+      ChestModule.inst,
+      BattleModule.inst,
+      EquipModule.inst,
+      HeroModule.inst,
+      StageModule.inst,
+      ShopModule.inst,
+      QuestModule.inst,
+      SkillModule.inst,
     ];
   }
 

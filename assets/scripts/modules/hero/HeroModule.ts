@@ -3,10 +3,10 @@ import { GameData } from '../../core/GameData';
 import { IGameModule } from '../../core/IGameModule';
 import { HeroEvents } from '../../events';
 
-export class HeroSystem implements IGameModule {
-  private static _inst: HeroSystem;
-  static get inst(): HeroSystem {
-    if (!this._inst) this._inst = new HeroSystem();
+export class HeroModule implements IGameModule {
+  private static _inst: HeroModule;
+  static get inst(): HeroModule {
+    if (!this._inst) this._inst = new HeroModule();
     return this._inst;
   }
 

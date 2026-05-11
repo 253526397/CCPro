@@ -3,10 +3,10 @@ import { GameData } from '../../core/GameData';
 import { IGameModule } from '../../core/IGameModule';
 import { ChestEvents } from '../../events';
 
-export class ChestSystem implements IGameModule {
-  private static _inst: ChestSystem;
-  static get inst(): ChestSystem {
-    if (!this._inst) this._inst = new ChestSystem();
+export class ChestModule implements IGameModule {
+  private static _inst: ChestModule;
+  static get inst(): ChestModule {
+    if (!this._inst) this._inst = new ChestModule();
     return this._inst;
   }
 

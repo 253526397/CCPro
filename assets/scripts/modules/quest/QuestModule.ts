@@ -4,10 +4,10 @@ import { IGameModule } from '../../core/IGameModule';
 import { QuestCondition } from '../../data';
 import { QuestEvents } from '../../events';
 
-export class QuestSystem implements IGameModule {
-  private static _inst: QuestSystem;
-  static get inst(): QuestSystem {
-    if (!this._inst) this._inst = new QuestSystem();
+export class QuestModule implements IGameModule {
+  private static _inst: QuestModule;
+  static get inst(): QuestModule {
+    if (!this._inst) this._inst = new QuestModule();
     return this._inst;
   }
 
