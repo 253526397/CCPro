@@ -25,7 +25,7 @@ export class NetService {
   }
 
   private baseUrl: string = '';
-  private bus: EventBus = new EventBus();
+  private bus: EventBus = EventBus.inst;
 
   /** 设置 API 根地址，如 "https://api.example.com" */
   setBaseUrl(url: string): void {

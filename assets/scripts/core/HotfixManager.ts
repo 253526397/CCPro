@@ -16,7 +16,7 @@ export class HotfixManager {
     return this._inst;
   }
 
-  private bus: EventBus = new EventBus();
+  private bus: EventBus = EventBus.inst;
   private versionUrl: string = '';
   private bundleUrl: string = '';
   private currentVersion: string = '0.0.0';

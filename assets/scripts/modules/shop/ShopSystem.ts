@@ -11,7 +11,7 @@ export class ShopSystem implements IGameModule {
     return this._inst;
   }
 
-  private bus: EventBus = new EventBus();
+  private bus: EventBus = EventBus.inst;
   private gd: GameData = GameData.inst;
   private platform: IPlatform | null = null;
 

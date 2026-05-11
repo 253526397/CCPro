@@ -46,7 +46,7 @@ export class GameData {
   lastSaveTime: number = 0;
 
   private dirtyKeys: Set<string> = new Set();
-  private bus: EventBus = new EventBus();
+  private bus: EventBus = EventBus.inst;
 
   /** 当前角色数据（单英雄场景） */
   get hero(): HeroData {

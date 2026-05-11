@@ -18,7 +18,7 @@ const { ccclass } = _decorator;
 
 @ccclass('GameEntry')
 export class GameEntry extends Component {
-  private bus: EventBus = new EventBus();
+  private bus: EventBus = EventBus.inst;
   private platform: IPlatform | null = null;
   private modules: IGameModule[] = [];
 

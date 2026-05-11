@@ -14,6 +14,12 @@ interface EventEntry {
  * bus.emit('chest:opened', { rewards });
  */
 export class EventBus {
+  private static _inst: EventBus;
+  static get inst(): EventBus {
+    if (!this._inst) this._inst = new EventBus();
+    return this._inst;
+  }
+
   private events: Map<string, EventEntry[]> = new Map();
 
   /** 注册事件监听 */

@@ -16,7 +16,7 @@ export class BattleSystem implements IGameModule {
     return this._inst;
   }
 
-  private bus: EventBus = new EventBus();
+  private bus: EventBus = EventBus.inst;
   private gd: GameData = GameData.inst;
   state: BattleState = BattleState.IDLE;
 

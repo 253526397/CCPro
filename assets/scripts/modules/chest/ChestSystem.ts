@@ -10,7 +10,7 @@ export class ChestSystem implements IGameModule {
     return this._inst;
   }
 
-  private bus: EventBus = new EventBus();
+  private bus: EventBus = EventBus.inst;
   private gd: GameData = GameData.inst;
 
   onInit(): void {}
