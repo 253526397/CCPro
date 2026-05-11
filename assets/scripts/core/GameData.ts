@@ -120,7 +120,7 @@ export class GameData {
     if (data.equips) this.equips = [...data.equips];
     if (data.currencies) {
       this._currencies.clear();
-      Object.entries(data.currencies).forEach(([k, v]) => this._currencies.set(k, v));
+      Object.keys(data.currencies).forEach(k => this._currencies.set(k, data.currencies![k]));
     }
     if (data.stageProgress) {
       this.stageProgress = {

@@ -30,14 +30,17 @@ export class UIManager {
   private layers: Map<UILayer, Node> = new Map();
   private uiRegistry: Map<string, Node> = new Map();
 
+  private static readonly ALL_LAYERS: UILayer[] = [
+    UILayer.BACKGROUND, UILayer.SCENE, UILayer.HUD,
+    UILayer.DIALOG, UILayer.FLOAT, UILayer.TIPS, UILayer.LOADING,
+  ];
+
   init(canvas: Node): void {
-    Object.values(UILayer).forEach((layer) => {
-      if (typeof layer === 'number') {
-        const node = new Node(`Layer_${UILayer[layer]}`);
-        node.setParent(canvas);
-        node.setSiblingIndex(LAYER_ORDER[layer as UILayer]);
-        this.layers.set(layer as UILayer, node);
-      }
+    UIManager.ALL_LAYERS.forEach((layer) => {
+      const node = new Node(`Layer_${UILayer[layer]}`);
+      node.setParent(canvas);
+      node.setSiblingIndex(LAYER_ORDER[layer]);
+      this.layers.set(layer, node);
     });
   }
 
