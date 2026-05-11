@@ -24,6 +24,11 @@ const DEFAULT_SETTINGS: GameSettings = {
   autoBattleSpeed: 1,
 };
 
+/**
+ * 全局数据中心，所有运行时游戏状态的首个数据源。
+ * UI 层只读，业务模块通过 set/add/spend 方法修改。
+ * 修改数据后自动 emit 对应事件通知 UI 刷新，同时通过脏标记追踪增量存盘。
+ */
 export class GameData {
   private static _inst: GameData;
   static get inst(): GameData {
@@ -43,46 +48,56 @@ export class GameData {
   private dirtyKeys: Set<string> = new Set();
   private bus: EventBus = new EventBus();
 
+  /** 当前角色数据（单英雄场景） */
   get hero(): HeroData {
     return this.heroes[this.currentHeroIndex];
   }
 
+  /** 获取指定货币数量，未初始化时返回 0 */
   getCurrency(type: string): number {
     return this._currencies.get(type) || 0;
   }
 
+  /** 设置货币为指定值，自动触发 CURRENCY_CHANGED 事件并标记脏数据 */
   setCurrency(type: string, amount: number): void {
     this._currencies.set(type, Math.max(0, amount));
     this.markDirty('currencies');
     this.bus.emit(ShopEvents.CURRENCY_CHANGED, { type, amount: this._currencies.get(type) });
   }
 
+  /** 增加货币（正数加、负数减） */
   addCurrency(type: string, amount: number): void {
     this.setCurrency(type, this.getCurrency(type) + amount);
   }
 
+  /** 检查货币是否足够 */
   hasEnough(type: string, amount: number): boolean {
     return this.getCurrency(type) >= amount;
   }
 
+  /** 消费货币，不足时返回 false 不扣减 */
   spendCurrency(type: string, amount: number): boolean {
     if (!this.hasEnough(type, amount)) return false;
     this.setCurrency(type, this.getCurrency(type) - amount);
     return true;
   }
 
+  /** 标记某类数据已变更（用于增量存盘） */
   markDirty(key: string): void {
     this.dirtyKeys.add(key);
   }
 
+  /** 检查某类数据是否有未保存的变更 */
   isDirty(key: string): boolean {
     return this.dirtyKeys.has(key);
   }
 
+  /** 清除所有脏标记（存盘后调用） */
   clearDirty(): void {
     this.dirtyKeys.clear();
   }
 
+  /** 获取增量脏数据快照，仅包含变更过的字段 */
   getDirtySnapshot(): Partial<SaveData> {
     const data: Partial<SaveData> = {};
     if (this.isDirty('hero')) data.hero = this.hero;
@@ -97,6 +112,7 @@ export class GameData {
     return data;
   }
 
+  /** 导出完整存盘数据（深拷贝，不会意外修改） */
   toSaveData(): SaveData {
     const currencies: Record<string, number> = {};
     this._currencies.forEach((v, k) => currencies[k] = v);
@@ -115,6 +131,7 @@ export class GameData {
     };
   }
 
+  /** 从存盘数据恢复游戏状态 */
   fromSaveData(data: SaveData): void {
     if (data.hero) this.heroes[this.currentHeroIndex] = { ...data.hero };
     if (data.equips) this.equips = [...data.equips];

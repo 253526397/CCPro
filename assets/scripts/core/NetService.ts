@@ -1,15 +1,22 @@
 import { EventBus } from './EventBus';
 import { NetEvents } from '../events';
 
+/** 标准服务端响应格式 */
 export interface NetResponse<T = any> {
   code: number;
   data: T;
   message: string;
 }
 
+/** 失败自动重试次数 */
 const MAX_RETRIES = 3;
+/** 首次重试延迟 ms，后续指数递增 */
 const RETRY_DELAY = 1000;
 
+/**
+ * HTTP 短连接服务，失败自动重试最多 3 次。
+ * 适用于云存档、排行榜等弱联网场景。
+ */
 export class NetService {
   private static _inst: NetService;
   static get inst(): NetService {
@@ -20,18 +27,22 @@ export class NetService {
   private baseUrl: string = '';
   private bus: EventBus = new EventBus();
 
+  /** 设置 API 根地址，如 "https://api.example.com" */
   setBaseUrl(url: string): void {
     this.baseUrl = url;
   }
 
+  /** GET 请求 */
   async get<T = any>(path: string, params?: Record<string, string>): Promise<NetResponse<T>> {
     return this.request<T>('GET', path, undefined, params);
   }
 
+  /** POST 请求 */
   async post<T = any>(path: string, body?: any): Promise<NetResponse<T>> {
     return this.request<T>('POST', path, body);
   }
 
+  /** 带自动重试的请求实现 */
   private async request<T>(
     method: string,
     path: string,

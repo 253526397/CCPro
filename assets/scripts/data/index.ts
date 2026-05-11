@@ -1,11 +1,14 @@
+/** 角色核心属性 */
 export interface HeroData {
   level: number;
   exp: number;
   nickname: string;
   avatar: number;
+  /** 综合战斗力，由装备属性汇总计算 */
   totalPower: number;
 }
 
+/** 装备槽位类型 */
 export enum EquipSlot {
   WEAPON = 'weapon',
   ARMOR = 'armor',
@@ -14,6 +17,7 @@ export enum EquipSlot {
   BOOTS = 'boots',
 }
 
+/** 装备品质（从低到高 1-5） */
 export enum EquipQuality {
   COMMON = 1,
   UNCOMMON = 2,
@@ -22,6 +26,7 @@ export enum EquipQuality {
   LEGENDARY = 5,
 }
 
+/** 装备运行时数据 */
 export interface EquipData {
   id: string;
   name: string;
@@ -29,14 +34,17 @@ export interface EquipData {
   quality: EquipQuality;
   level: number;
   attrs: EquipAttr[];
+  /** 是否已装备到角色身上 */
   isEquipped: boolean;
 }
 
+/** 单条装备属性 */
 export interface EquipAttr {
   type: AttrType;
   value: number;
 }
 
+/** 属性类型枚举 */
 export enum AttrType {
   ATK = 'atk',
   DEF = 'def',
@@ -46,6 +54,7 @@ export enum AttrType {
   SPEED = 'speed',
 }
 
+/** 关卡静态配置 */
 export interface StageData {
   stageId: number;
   name: string;
@@ -55,6 +64,7 @@ export interface StageData {
   rewards: StageReward[];
 }
 
+/** 关卡敌人配置 */
 export interface StageEnemy {
   id: number;
   name: string;
@@ -64,23 +74,27 @@ export interface StageEnemy {
   speed: number;
 }
 
+/** 关卡奖励 */
 export interface StageReward {
   type: 'gold' | 'equip' | 'exp';
   amount: number;
   equipId?: string;
 }
 
+/** 关卡推进进度（存档用） */
 export interface StageProgressData {
   currentStageId: number;
   passedStageIds: number[];
 }
 
+/** 任务类型 */
 export enum QuestType {
   DAILY = 'daily',
   GROWTH = 'growth',
   ACHIEVEMENT = 'achievement',
 }
 
+/** 任务完成条件类型 */
 export enum QuestCondition {
   OPEN_CHEST = 'openChest',
   WIN_BATTLE = 'winBattle',
@@ -89,6 +103,7 @@ export enum QuestCondition {
   SPEND_GOLD = 'spendGold',
 }
 
+/** 任务静态配置 */
 export interface QuestData {
   questId: string;
   type: QuestType;
@@ -97,13 +112,16 @@ export interface QuestData {
   rewards: { type: string; amount: number }[];
 }
 
+/** 任务推进进度（存档用） */
 export interface QuestProgress {
   questId: string;
   currentCount: number;
   completed: boolean;
+  /** 已完成且已领取奖励 */
   claimed: boolean;
 }
 
+/** 完整存档数据结构 */
 export interface SaveData {
   hero: HeroData;
   equips: EquipData[];
@@ -114,12 +132,14 @@ export interface SaveData {
   lastSaveTime: number;
 }
 
+/** 玩家设置 */
 export interface GameSettings {
   musicVolume: number;
   sfxVolume: number;
   autoBattleSpeed: number;
 }
 
+/** 货币类型 */
 export enum CurrencyType {
   GOLD = 'gold',
   DIAMOND = 'diamond',
