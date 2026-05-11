@@ -1,5 +1,5 @@
 import { EventBus } from './EventBus';
-import {
+import type {
   HeroData, EquipData, StageProgressData, QuestProgress,
   GameSettings, SaveData,
 } from '../data';

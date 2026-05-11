@@ -1,6 +1,6 @@
 import { EventBus } from '../../core/EventBus';
 import { GameData } from '../../core/GameData';
-import { IGameModule } from '../../core/IGameModule';
+import type { IGameModule } from '../../core/IGameModule';
 import { StageEvents } from '../../events';
 
 export class StageModule implements IGameModule {

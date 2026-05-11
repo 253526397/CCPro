@@ -1,7 +1,7 @@
 import { EventBus } from '../../core/EventBus';
 import { GameData } from '../../core/GameData';
-import { IGameModule } from '../../core/IGameModule';
-import { QuestCondition } from '../../data';
+import type { IGameModule } from '../../core/IGameModule';
+import type { QuestCondition } from '../../data';
 import { QuestEvents } from '../../events';
 
 export class QuestModule implements IGameModule {
