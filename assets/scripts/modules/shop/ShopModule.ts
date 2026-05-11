@@ -1,16 +1,10 @@
 import { EventBus } from '../../core/EventBus';
 import { GameData } from '../../core/GameData';
-import { IGameModule } from '../../core/IGameModule';
+import type { IGameModule } from '../../core/IGameModule';
 import type { IPlatform } from '../../platform/IPlatform';
 import { ShopEvents } from '../../events';
 
 export class ShopModule implements IGameModule {
-  private static _inst: ShopModule;
-  static get inst(): ShopModule {
-    if (!this._inst) this._inst = new ShopModule();
-    return this._inst;
-  }
-
   private bus: EventBus = EventBus.inst;
   private gd: GameData = GameData.inst;
   private platform: IPlatform | null = null;

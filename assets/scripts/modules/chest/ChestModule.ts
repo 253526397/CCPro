@@ -4,12 +4,6 @@ import type { IGameModule } from '../../core/IGameModule';
 import { ChestEvents } from '../../events';
 
 export class ChestModule implements IGameModule {
-  private static _inst: ChestModule;
-  static get inst(): ChestModule {
-    if (!this._inst) this._inst = new ChestModule();
-    return this._inst;
-  }
-
   private bus: EventBus = EventBus.inst;
   private gd: GameData = GameData.inst;
 

@@ -4,12 +4,6 @@ import type { IGameModule } from '../../core/IGameModule';
 import { HeroEvents } from '../../events';
 
 export class HeroModule implements IGameModule {
-  private static _inst: HeroModule;
-  static get inst(): HeroModule {
-    if (!this._inst) this._inst = new HeroModule();
-    return this._inst;
-  }
-
   private bus: EventBus = EventBus.inst;
   private gd: GameData = GameData.inst;
 

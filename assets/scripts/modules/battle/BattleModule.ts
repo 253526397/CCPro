@@ -10,12 +10,6 @@ export enum BattleState {
 }
 
 export class BattleModule implements IGameModule {
-  private static _inst: BattleModule;
-  static get inst(): BattleModule {
-    if (!this._inst) this._inst = new BattleModule();
-    return this._inst;
-  }
-
   private bus: EventBus = EventBus.inst;
   private gd: GameData = GameData.inst;
   state: BattleState = BattleState.IDLE;

@@ -5,12 +5,6 @@ import type { QuestCondition } from '../../data';
 import { QuestEvents } from '../../events';
 
 export class QuestModule implements IGameModule {
-  private static _inst: QuestModule;
-  static get inst(): QuestModule {
-    if (!this._inst) this._inst = new QuestModule();
-    return this._inst;
-  }
-
   private bus: EventBus = EventBus.inst;
   private gd: GameData = GameData.inst;
 

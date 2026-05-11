@@ -4,12 +4,6 @@ import type { IGameModule } from '../../core/IGameModule';
 import { StageEvents } from '../../events';
 
 export class StageModule implements IGameModule {
-  private static _inst: StageModule;
-  static get inst(): StageModule {
-    if (!this._inst) this._inst = new StageModule();
-    return this._inst;
-  }
-
   private bus: EventBus = EventBus.inst;
   private gd: GameData = GameData.inst;
 
