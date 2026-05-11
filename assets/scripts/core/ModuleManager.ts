@@ -3,17 +3,20 @@ import type { IGameModule } from './IGameModule';
 /**
  * 全局模块管理器，负责业务模块的注册、查找和生命周期调度。
  *
- * 通过字符串 key 查找模块，避免模块间因 import 类构造函数产生循环引用。
- * 调用方不需要 import 目标模块的类，只需知道模块名即可。
+ * 通过字符串 key 查找模块。get() 始终返回可用对象：
+ * - 模块已注册 → 返回真实实例
+ * - 模块未注册 → 返回 SafeProxy，所有方法调用静默吞掉不报错
+ *
+ * 模块之间可以直接调用方法通信，不再需要 EventBus。
  *
  * @example
- * // 注册（仅在 GameEntry 中，由 GameEntry import 所有模块）
+ * // 注册（仅在 GameEntry 中）
  * ModuleManager.inst.register(ChestModule);
  *
  * // 查找（任意模块中，无需 import ChestModule）
- * const chest = ModuleManager.inst.get('ChestModule') as ChestModule;
- * // 如需类型提示，使用 import type（编译时擦除，不产生循环引用）
  * import type { ChestModule } from '../chest/ChestModule';
+ * const chest = ModuleManager.inst.get<ChestModule>('ChestModule');
+ * chest.openChest('gold'); // B未注册时静默跳过，不报错
  */
 export class ModuleManager {
   private static _inst: ModuleManager;
@@ -24,6 +27,13 @@ export class ModuleManager {
 
   private modules: Map<string, IGameModule> = new Map();
   private order: string[] = [];
+
+  /** 未注册模块的占位 Proxy，所有属性访问都返回空函数 */
+  private readonly safeProxy: IGameModule = new Proxy({} as IGameModule, {
+    get() {
+      return () => {};
+    },
+  });
 
   /**
    * 注册模块实例，key 自动取自类名。
@@ -42,10 +52,11 @@ export class ModuleManager {
 
   /**
    * 按字符串 key 获取模块实例。
+   * 已注册 → 返回真实实例；未注册 → 返回 SafeProxy（不会返回 undefined/报错）。
    * 调用方只需传类名字符串，无需 import 目标模块，彻底避免循环引用。
    */
-  get(key: string): IGameModule | undefined {
-    return this.modules.get(key);
+  get<T extends IGameModule = IGameModule>(key: string): T {
+    return (this.modules.get(key) as T) || (this.safeProxy as T);
   }
 
   /** 所有模块 onInit */

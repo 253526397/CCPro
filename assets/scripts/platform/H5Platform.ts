@@ -1,4 +1,4 @@
-import {
+import type {
   IPlatform, IAdAPI, IIAPAPI, IAuthAPI,
   IShareAPI, IStorageAPI, PlatformId, DeviceInfo,
 } from './IPlatform';
