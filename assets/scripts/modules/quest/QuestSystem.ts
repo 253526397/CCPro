@@ -1,9 +1,10 @@
 import { EventBus } from '../../core/EventBus';
 import { GameData } from '../../core/GameData';
+import { IGameModule } from '../../core/IGameModule';
 import { QuestCondition } from '../../data';
 import { QuestEvents } from '../../events';
 
-export class QuestSystem {
+export class QuestSystem implements IGameModule {
   private static _inst: QuestSystem;
   static get inst(): QuestSystem {
     if (!this._inst) this._inst = new QuestSystem();
@@ -12,6 +13,14 @@ export class QuestSystem {
 
   private bus: EventBus = new EventBus();
   private gd: GameData = GameData.inst;
+
+  onInit(): void {}
+
+  onConfigLoaded(): void {}
+
+  onGameStart(): void {}
+
+  onCleanup(): void {}
 
   updateProgress(condition: QuestCondition, count: number): void {
     this.gd.questProgress

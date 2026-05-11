@@ -1,5 +1,6 @@
 import { EventBus } from '../../core/EventBus';
 import { GameData } from '../../core/GameData';
+import { IGameModule } from '../../core/IGameModule';
 import { BattleEvents } from '../../events';
 
 export enum BattleState {
@@ -8,7 +9,7 @@ export enum BattleState {
   FINISHED = 'finished',
 }
 
-export class BattleSystem {
+export class BattleSystem implements IGameModule {
   private static _inst: BattleSystem;
   static get inst(): BattleSystem {
     if (!this._inst) this._inst = new BattleSystem();
@@ -18,6 +19,14 @@ export class BattleSystem {
   private bus: EventBus = new EventBus();
   private gd: GameData = GameData.inst;
   state: BattleState = BattleState.IDLE;
+
+  onInit(): void {}
+
+  onConfigLoaded(): void {}
+
+  onGameStart(): void {}
+
+  onCleanup(): void {}
 
   start(stageId: number): void {
     this.state = BattleState.FIGHTING;

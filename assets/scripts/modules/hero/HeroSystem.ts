@@ -1,8 +1,9 @@
 import { EventBus } from '../../core/EventBus';
 import { GameData } from '../../core/GameData';
+import { IGameModule } from '../../core/IGameModule';
 import { HeroEvents } from '../../events';
 
-export class HeroSystem {
+export class HeroSystem implements IGameModule {
   private static _inst: HeroSystem;
   static get inst(): HeroSystem {
     if (!this._inst) this._inst = new HeroSystem();
@@ -11,6 +12,14 @@ export class HeroSystem {
 
   private bus: EventBus = new EventBus();
   private gd: GameData = GameData.inst;
+
+  onInit(): void {}
+
+  onConfigLoaded(): void {}
+
+  onGameStart(): void {}
+
+  onCleanup(): void {}
 
   addExp(amount: number): void {
     this.gd.hero.exp += amount;

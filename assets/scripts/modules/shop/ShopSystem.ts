@@ -1,9 +1,10 @@
 import { EventBus } from '../../core/EventBus';
 import { GameData } from '../../core/GameData';
+import { IGameModule } from '../../core/IGameModule';
 import { IPlatform } from '../../platform/IPlatform';
 import { ShopEvents } from '../../events';
 
-export class ShopSystem {
+export class ShopSystem implements IGameModule {
   private static _inst: ShopSystem;
   static get inst(): ShopSystem {
     if (!this._inst) this._inst = new ShopSystem();
@@ -13,6 +14,14 @@ export class ShopSystem {
   private bus: EventBus = new EventBus();
   private gd: GameData = GameData.inst;
   private platform: IPlatform | null = null;
+
+  onInit(): void {}
+
+  onConfigLoaded(): void {}
+
+  onGameStart(): void {}
+
+  onCleanup(): void {}
 
   setPlatform(p: IPlatform): void {
     this.platform = p;
