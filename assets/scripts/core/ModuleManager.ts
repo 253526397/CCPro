@@ -1,5 +1,3 @@
-import type { IGameModule } from './IGameModule';
-
 /**
  * 全局模块管理器，负责业务模块的注册、查找和生命周期调度。
  *
@@ -40,10 +38,10 @@ export class ModuleManager {
    * 注册模块实例，key 自动取自类名。
    * 仅在 GameEntry 初始化时调用，注册顺序即生命周期调用顺序。
    */
-  register(ctor: new () => IGameModule): IGameModule {
-    const key = ctor.name;
+  register<T extends IGameModule>(moduleName:string, ctor: new () => T): T {
+    const key = moduleName;
     if (this.modules.has(key)) {
-      return this.modules.get(key)!;
+      return this.modules.get(key) as T;
     }
     const instance = new ctor();
     this.modules.set(key, instance);
@@ -84,4 +82,33 @@ export class ModuleManager {
   getAll(): IGameModule[] {
     return this.order.map(key => this.modules.get(key)!);
   }
+}
+
+/**
+ * 业务模块生命周期接口，所有业务模块必须实现。
+ *
+ * 调用时序：
+ *   GameEntry.init()
+ *     → modules.forEach(onInit)
+ *     → ConfigService 加载配置表
+ *     → modules.forEach(onConfigLoaded)
+ *     → EventBus.emit("game:ready")
+ *     → modules.forEach(onGameStart)
+ *
+ *   切换账号：
+ *     → modules.forEach(onCleanup)
+ *     → 重新走 onInit → onConfigLoaded → onGameStart
+ */
+export interface IGameModule {
+  /** 模块初始化 — 注册事件监听、创建单例 */
+  onInit(): void;
+
+  /** 配置表加载完成 — 可安全读取策划数据 */
+  onConfigLoaded(): void;
+
+  /** 游戏正式开始 — 触发业务逻辑 */
+  onGameStart(): void;
+
+  /** 清理玩家数据 — 切换账号时调用，恢复到模块初始状态 */
+  onCleanup(): void;
 }

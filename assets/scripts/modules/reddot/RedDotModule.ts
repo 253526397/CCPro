@@ -1,7 +1,7 @@
 import { EventBus } from '../../core/EventBus';
-import type { IGameModule } from '../../core/IGameModule';
-import { RedDotData } from './RedDotData';
+import { ModuleManager, type IGameModule } from '../../core/ModuleManager';
 import { RedDotEvents } from '../../events';
+import { RedDotData } from './RedDotData';
 
 /** 红点显示对象接口 — 视图层实现此接口以响应计数变化 */
 export interface IRedDotDisplay {
@@ -113,3 +113,5 @@ export class RedDotModule implements IGameModule {
   }
   //#endregion
 }
+
+export const redDotModule = ModuleManager.inst.register<RedDotModule>('RedDotModule', RedDotModule);

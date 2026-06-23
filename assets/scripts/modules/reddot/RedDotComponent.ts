@@ -1,7 +1,5 @@
 import { _decorator, Component } from 'cc';
-import { ModuleManager } from '../../core/ModuleManager';
-import type { RedDotModule } from './RedDotModule';
-import type { IRedDotDisplay } from './RedDotModule';
+import { redDotModule, type IRedDotDisplay } from './RedDotModule';
 
 const { ccclass, property } = _decorator;
 
@@ -15,17 +13,12 @@ export class RedDotComponent extends Component implements IRedDotDisplay {
   @property
   redDotPath: string = '';
 
-  private module: RedDotModule | null = null;
-
   onLoad(): void {
-    this.module = ModuleManager.inst.get<RedDotModule>('RedDotModule');
-    this.module.registerDisplay(this.redDotPath, this);
+    redDotModule.registerDisplay(this.redDotPath, this);
   }
 
   onDestroy(): void {
-    if (this.module) {
-      this.module.removeDisplay(this.redDotPath, this);
-    }
+    redDotModule.removeDisplay(this.redDotPath, this);
   }
 
   /** IRedDotDisplay — 红点模块在计数变化时调用 */

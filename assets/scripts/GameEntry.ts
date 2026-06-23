@@ -1,17 +1,8 @@
-import { _decorator, Component, Node } from 'cc';
+import { _decorator, Component } from 'cc';
 import { EventBus } from './core/EventBus';
-import { UIManager } from './core/UIManager';
 import { ModuleManager } from './core/ModuleManager';
+import { UIManager } from './core/UIManager';
 import type { IPlatform } from './platform/IPlatform';
-import { ChestModule } from './modules/chest/ChestModule';
-import { BattleModule } from './modules/battle/BattleModule';
-import { EquipModule } from './modules/equip/EquipModule';
-import { HeroModule } from './modules/hero/HeroModule';
-import { StageModule } from './modules/stage/StageModule';
-import { ShopModule } from './modules/shop/ShopModule';
-import { QuestModule } from './modules/quest/QuestModule';
-import { SkillModule } from './modules/skill/SkillModule';
-import { RedDotModule } from './modules/reddot/RedDotModule';
 
 const { ccclass } = _decorator;
 
@@ -25,22 +16,7 @@ export class GameEntry extends Component {
     await this.init();
   }
 
-  /** 注册所有业务模块（按依赖顺序） */
-  private registerModules(): void {
-    this.mm.register(ChestModule);
-    this.mm.register(BattleModule);
-    this.mm.register(EquipModule);
-    this.mm.register(HeroModule);
-    this.mm.register(StageModule);
-    this.mm.register(ShopModule);
-    this.mm.register(QuestModule);
-    this.mm.register(SkillModule);
-    this.mm.register(RedDotModule);
-  }
-
   async init(): Promise<void> {
-    // 1. 注册并初始化模块
-    this.registerModules();
     this.mm.onInit();
 
     // 2. UI
