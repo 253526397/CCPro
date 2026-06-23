@@ -86,6 +86,12 @@ export const NetEvents = {
   CONFLICT_DETECTED: 'net:conflictDetected',
 } as const;
 
+/** 红点系统事件 */
+export const RedDotEvents = {
+  /** 红点计数变化，payload: { path: string, count: number } */
+  COUNT_CHANGED: 'reddot:countChanged',
+} as const;
+
 /** 全局错误事件 */
 export const ErrorEvents = {
   /** 本地存储空间不足 */

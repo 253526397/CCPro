@@ -1,7 +1,6 @@
 import { _decorator, Component, Node } from 'cc';
 import { EventBus } from './core/EventBus';
 import { UIManager } from './core/UIManager';
-import { HotfixManager } from './core/HotfixManager';
 import { ModuleManager } from './core/ModuleManager';
 import type { IPlatform } from './platform/IPlatform';
 import { ChestModule } from './modules/chest/ChestModule';
@@ -12,6 +11,7 @@ import { StageModule } from './modules/stage/StageModule';
 import { ShopModule } from './modules/shop/ShopModule';
 import { QuestModule } from './modules/quest/QuestModule';
 import { SkillModule } from './modules/skill/SkillModule';
+import { RedDotModule } from './modules/reddot/RedDotModule';
 
 const { ccclass } = _decorator;
 
@@ -35,6 +35,7 @@ export class GameEntry extends Component {
     this.mm.register(ShopModule);
     this.mm.register(QuestModule);
     this.mm.register(SkillModule);
+    this.mm.register(RedDotModule);
   }
 
   async init(): Promise<void> {
@@ -53,9 +54,9 @@ export class GameEntry extends Component {
     // await this.platform.init();
 
     // 5. Hotfix
-    if (this.platform) {
-      await HotfixManager.inst.checkAndUpdateAuto(this.platform);
-    }
+    // if (this.platform) {
+    //   await HotfixManager.inst.checkAndUpdateAuto(this.platform);
+    // }
 
     // 6. 游戏开始
     this.bus.emit('game:ready');

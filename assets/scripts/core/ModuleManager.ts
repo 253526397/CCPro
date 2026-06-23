@@ -31,6 +31,7 @@ export class ModuleManager {
   /** 未注册模块的占位 Proxy，所有属性访问都返回空函数 */
   private readonly safeProxy: IGameModule = new Proxy({} as IGameModule, {
     get() {
+      console.warn(`[ModuleManager] Module ${this.name} not registered.`);
       return () => {};
     },
   });

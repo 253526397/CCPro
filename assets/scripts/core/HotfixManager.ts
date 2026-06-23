@@ -1,4 +1,3 @@
-import { ResMgr } from './ResMgr';
 import type { IPlatform } from '../platform/IPlatform';
 import { EventBus } from './EventBus';
 import { ErrorEvents } from '../events';
