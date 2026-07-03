@@ -1,5 +1,5 @@
 import { spawn } from 'child_process';
-import { join } from 'path';
+import path from 'path';
 
 /** 获取项目根路径 */
 function getProjectPath(): string {
@@ -77,12 +77,12 @@ export const methods: { [key: string]: (...any: any) => any } = {
     /** 执行 config/exceltools.bat 导出 Excel 配置 */
     configExport() {
         const projectPath = getProjectPath();
-        const batPath = join(projectPath, 'config', 'exceltools.bat');
+        const batPath = path.join(projectPath, 'config', 'exceltools.bat');
 
         console.log(`[tools] Running: ${batPath}`);
 
         // Windows bat 必须通过 cmd /c 执行
-        const child = spawn('cmd', ['/c', batPath], { cwd: join(projectPath, 'config') });
+        const child = spawn('cmd', ['/c', batPath], { cwd: path.join(projectPath, 'config') });
 
         child.stdout.on('data', (data: Buffer) => {
             console.log(data.toString().replace(/\r?\n$/, ''));
