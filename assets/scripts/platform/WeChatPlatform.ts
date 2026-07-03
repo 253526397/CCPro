@@ -1,6 +1,10 @@
-import type{
-  IPlatform, IAdAPI, IIAPAPI, IAuthAPI,
-  IShareAPI, IStorageAPI, PlatformId, DeviceInfo,
+import type {
+  DeviceInfo,
+  IAdAPI,
+  IAuthAPI,
+  IIAPAPI,
+  IPlatform,
+  IShareAPI, IStorageAPI, PlatformId,
 } from './IPlatform';
 
 class WeChatStorageAPI implements IStorageAPI {

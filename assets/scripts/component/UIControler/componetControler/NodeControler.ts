@@ -1,4 +1,4 @@
-import { _decorator, ccenum, Node, Vec3 } from "cc";
+import { _decorator, CCBoolean, ccenum, CCFloat, Node, Vec3 } from "cc";
 import type { IControler } from "../UIControlerGroup";
 
 const { ccclass, property } = _decorator;
@@ -22,7 +22,7 @@ export class NodeControler implements IControler{
     atb: NodeControlerAtb = NodeControlerAtb.none;
 
     @property({
-        type: Boolean,
+        type: CCBoolean,
         visible: function (this: NodeControler) { return this.atb == NodeControlerAtb.active; }
     })
     active:boolean = true;
@@ -34,7 +34,7 @@ export class NodeControler implements IControler{
     position: Vec3 = new Vec3(0,0,0);
 
     @property({
-        type: Number, 
+        type: CCFloat, 
         visible: function (this: NodeControler) { return this.atb == NodeControlerAtb.rotation; }
     })
     rotation:number = 0;

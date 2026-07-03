@@ -1,6 +1,6 @@
 import { EventBus } from '../../core/EventBus';
 import { GameData } from '../../core/GameData';
-import { ModuleManager, type IGameModule } from '../../core/ModuleManager';
+import { type IGameModule } from '../../core/ModuleManager';
 import { BattleEvents } from '../../events';
 
 export enum BattleState {
@@ -18,6 +18,8 @@ export class BattleModule implements IGameModule {
 
   onConfigLoaded(): void {}
 
+  onUserDataLoaded(): void {}
+
   onGameStart(): void {}
 
   onCleanup(): void {}
@@ -32,5 +34,3 @@ export class BattleModule implements IGameModule {
     this.bus.emit(BattleEvents.FINISHED, { win });
   }
 }
-
-export const battleModule = ModuleManager.inst.register<BattleModule>("BattleModule", BattleModule);

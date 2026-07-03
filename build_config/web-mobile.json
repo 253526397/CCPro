@@ -1,0 +1,82 @@
+{
+  "name": "zumbia.cocos",
+  "server": "",
+  "platform": "web-mobile",
+  "buildPath": "project://build",
+  "debug": false,
+  "buildMode": "normal",
+  "mangleProperties": false,
+  "md5Cache": true,
+  "skipCompressTexture": false,
+  "sourceMaps": false,
+  "overwriteProjectSettings": {
+    "includeModules": {
+      "gfx-webgl2": "on",
+      "physics": "inherit-project-setting",
+      "physics-2d": "inherit-project-setting"
+    },
+    "macroConfig": {
+      "cleanupImageCache": "inherit-project-setting"
+    }
+  },
+  "nativeCodeBundleMode": "both",
+  "polyfills": {
+    "asyncFunctions": true,
+    "coreJs": true
+  },
+  "experimentalEraseModules": false,
+  "startSceneAssetBundle": false,
+  "bundleConfigs": [],
+  "inlineEnum": true,
+  "useBuiltinServer": false,
+  "md5CacheOptions": {
+    "excludes": [],
+    "includes": [],
+    "replaceOnly": [],
+    "handleTemplateMd5Link": true
+  },
+  "mainBundleIsRemote": false,
+  "mainBundleCompressionType": "merge_dep",
+  "useSplashScreen": true,
+  "bundleCommonChunk": false,
+  "packAutoAtlas": true,
+  "startScene": "8553cc48-85c6-4914-8db4-40f4512a4eb8",
+  "outputName": "web-mobile",
+  "taskName": "web-mobile",
+  "scenes": [
+    {
+      "url": "db://assets/scene/main.scene",
+      "uuid": "8553cc48-85c6-4914-8db4-40f4512a4eb8"
+    }
+  ],
+  "wasmCompressionMode": false,
+  "packages": {
+    "adsense-h5g-plugin": {
+      "enableAdsense": false,
+      "enableTestAd": false,
+      "__version__": "1.0.1",
+      "AFPHostPropertyCode": "ca-host-pub-5396158963872751",
+      "AFPHostDomain": "douyougame.com",
+      "otherAFPHostPropertyCode": "",
+      "otherAFPDomain": ""
+    },
+    "web-mobile": {
+      "useWebGPU": false,
+      "orientation": "auto",
+      "embedWebDebugger": false,
+      "__version__": "1.0.1"
+    },
+    "cocos-service": {
+      "configID": "ca1c68",
+      "services": [],
+      "__version__": "3.0.8"
+    },
+    "web-easy-obfus": {
+      "enable": true,
+      "selectObfusLevel": "option4",
+      "__version__": "1.0.1"
+    }
+  },
+  "__version__": "1.3.9",
+  "logDest": "project://temp/builder/log/web-mobile2025-1-28 00-35.log"
+}

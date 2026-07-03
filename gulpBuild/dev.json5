@@ -1,0 +1,67 @@
+{
+    // 开发环境配置
+    // 模板文件(用这些模板文件替换掉项目中的文件,这个文件夹下的文件下的文件的相对路径对应的就是项目从根目录的相对路径，没有的情况下就不替换)
+    "templateFile":"",
+
+
+    // 远程资源路径(不配置就不把远程资源复制到本地)
+    "remoteRes":"",
+    // 本地远程资源路径(不配置就不把远程资源复制到本地)
+    "localRemoteRes":"project://assets/resources/hbw_wx_6",
+
+
+    // 配置表源路径 (Excel 导表工具目录，不配置不走配置表打包流程)
+    "configPath": "Z:/花不完2/海2台（3女主data）",
+    // 平台配置地址
+    "configPlatform": "",
+    // 配置表输出路径
+    "conifgOutput": "Y:/test/config/dev",
+    // 输出文件名（含后缀）
+    "configOutputSuffix": ".dat",
+    // 是否加密输出 (JSON → pako压缩 → AES加密 → .dat)
+    "encrypt": true,
+    // 配置文件上传路径,不配置就跳过上传步骤
+    "configUploadPath":"",
+
+
+    // 图片压缩工具路径（支持句对路径，相对路径从项目根拼接，不配置不走图片压缩流程）
+    "compressassetsimage": "",
+
+
+    // cocosCreator的绝对路径，用来执行cocos命令（不配置不走cocos打包步骤）
+    "creatorPath":"C:/ProgramData/cocos/editors/Creator/3.8.8/CocosCreator.exe",
+    // cocosCreator构建配置文件路径（不配置不走cocos打包步骤）
+    "buildConfigPath":"project://build_config/buildConfig_web-mobile.json",
+    // 构建后需要替换的模板文件
+    "buildTemplatePath": "",
+    // cocosCreator构建之后的上传路径,如果不配置就不上传
+    "buildUploadPath": "",
+
+
+    // android构建类型AAB/APK/Both（不配置不走android打包步骤）
+    "androidBuildType": "",
+    // android构建后的上传路径，如果没有配置就不上传
+    "androidUploadPath": "",
+    // android构建的时候是否需要assetPack分包
+    "needAssetPack": false,
+    // android打包的时候的版本号
+    "versionCode": "1",
+    // android打包的时候的版本名称
+    "versionName": "1.0",
+
+     //  ftp上传文件的源路径,如果没有配置就不上传
+    "ftpSpurcePath": "",
+    //  ftp上传文件的目标路径
+    "ftpDestPath": "",
+    //  ftp的host
+    "ftpHost": "",
+    //  ftp的端口,""就是没有端口
+    "ftpPort": "",
+    //  ftp的账号
+    "ftpUser": "",
+    //  ftp的密码
+    "ftpPassword": "",
+    //  ftp的secure, true就是FTPS，false就是FTP
+    "ftpSecure": false,
+}
+

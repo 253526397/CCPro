@@ -1,5 +1,5 @@
 import { EventBus } from '../../core/EventBus';
-import { ModuleManager, type IGameModule } from '../../core/ModuleManager';
+import { type IGameModule } from '../../core/ModuleManager';
 import { RedDotEvents } from '../../events';
 import { RedDotData } from './RedDotData';
 
@@ -31,6 +31,7 @@ export class RedDotModule implements IGameModule {
   //#region 生命周期
   onInit(): void {}
   onConfigLoaded(): void {}
+  onUserDataLoaded(): void {}
   onGameStart(): void {}
 
   onCleanup(): void {
@@ -113,5 +114,3 @@ export class RedDotModule implements IGameModule {
   }
   //#endregion
 }
-
-export const redDotModule = ModuleManager.inst.register<RedDotModule>('RedDotModule', RedDotModule);

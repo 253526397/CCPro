@@ -1,0 +1,46 @@
+{
+    "$schema": "./@types/schema/package/index.json",
+    "package_version": 2,
+    "name": "tools",
+    "version": "1.0.0",
+    "author": "Cocos Creator",
+    "editor": ">=3.8.8",
+    "scripts": {
+        "preinstall": "node ./scripts/preinstall.js",
+        "build": "tsc",
+        "watch": "tsc -w"
+    },
+    "description": "i18n:tools.description",
+    "main": "./dist/main.js",
+    "devDependencies": {
+        "@cocos/creator-types": "^3.8.8",
+        "@types/node": "^18.17.1",
+        "typescript": "^5.8.2"
+    },
+    "contributions": {
+        "menu": [
+            {
+                "path": "tools",
+                "label": "configExport",
+                "message": "configExport"
+            },
+            {
+                "path": "tools",
+                "label": "log",
+                "message": "log"
+            }
+        ],
+        "messages": {
+            "configExport": {
+                "methods": [
+                    "configExport"
+                ]
+            },
+            "log": {
+                "methods": [
+                    "showLog"
+                ]
+            }
+        }
+    }
+}

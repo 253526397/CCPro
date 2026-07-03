@@ -1,4 +1,4 @@
-import { AssetManager, assetManager, resources, TextAsset, type Asset } from "cc";
+import { assetManager, resources, TextAsset, type Asset } from "cc";
 import { ResourceBundle } from "./ResourceBundle";
 
 /** 全局资源管理器，负责本地 Bundle 加载和远程资源下载 */
@@ -14,6 +14,10 @@ export class ResourceManager {
 
     constructor() {
         this.resourceBundle = new ResourceBundle(resources);
+    }
+
+    loadResource<T extends Asset>(url: string, type?: new () => T): Promise<T> {
+        return this.resourceBundle.loadResource<T>(url, type);
     }
 
     /**

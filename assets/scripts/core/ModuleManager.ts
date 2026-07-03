@@ -68,6 +68,11 @@ export class ModuleManager {
     this.order.forEach(key => this.modules.get(key)!.onConfigLoaded());
   }
 
+  /** 所有模块 onUserDataLoaded */
+  onUserDataLoaded(): void {
+    this.order.forEach(key => this.modules.get(key)!.onUserDataLoaded());
+  }
+
   /** 所有模块 onGameStart */
   onGameStart(): void {
     this.order.forEach(key => this.modules.get(key)!.onGameStart());
@@ -105,6 +110,9 @@ export interface IGameModule {
 
   /** 配置表加载完成 — 可安全读取策划数据 */
   onConfigLoaded(): void;
+
+  /** 用户数据加载完成 — 可安全读取用户数据 */
+  onUserDataLoaded(): void;
 
   /** 游戏正式开始 — 触发业务逻辑 */
   onGameStart(): void;

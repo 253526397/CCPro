@@ -1,6 +1,8 @@
-import { _decorator, Component } from 'cc';
+import { _decorator, Component, JsonAsset } from 'cc';
+import { Config } from './config/Config';
 import { EventBus } from './core/EventBus';
 import { ModuleManager } from './core/ModuleManager';
+import { ResourceManager } from './core/ResourceManager';
 import { UIManager } from './core/UIManager';
 import type { IPlatform } from './platform/IPlatform';
 
@@ -20,7 +22,12 @@ export class GameEntry extends Component {
     this.mm.onInit();
 
     // 2. UI
-    UIManager.inst.init(this.node.getChildByName('Canvas') || this.node);
+    UIManager.inst.init(this.node);
+
+    let json: JsonAsset = await ResourceManager.inst.loadResource("config/config", JsonAsset);
+    Config.parseData(JSON.stringify(json.json));
+
+
 
     // 3. 配置表加载完成后通知模块
     this.mm.onConfigLoaded();
@@ -33,6 +40,8 @@ export class GameEntry extends Component {
     // if (this.platform) {
     //   await HotfixManager.inst.checkAndUpdateAuto(this.platform);
     // }
+
+    this.mm.onUserDataLoaded();
 
     // 6. 游戏开始
     this.bus.emit('game:ready');

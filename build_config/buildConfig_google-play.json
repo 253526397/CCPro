@@ -1,0 +1,122 @@
+{
+  "name": "RogBall",
+  "server": "",
+  "engineModulesConfigKey": "migrationsConfig",
+  "platform": "google-play",
+  "buildPath": "project://build",
+  "debug": false,
+  "buildMode": "normal",
+  "mangleProperties": false,
+  "md5Cache": false,
+  "skipCompressTexture": false,
+  "sourceMaps": "false",
+  "overwriteProjectSettings": {
+    "macroConfig": {
+      "cleanupImageCache": "inherit-project-setting"
+    },
+    "includeModules": {
+      "physics": "inherit-project-setting",
+      "physics-2d": "inherit-project-setting",
+      "gfx-webgl2": "off"
+    }
+  },
+  "nativeCodeBundleMode": "wasm",
+  "polyfills": {
+    "asyncFunctions": false
+  },
+  "experimentalEraseModules": false,
+  "startSceneAssetBundle": false,
+  "bundleConfigs": [],
+  "inlineEnum": true,
+  "useBuiltinServer": false,
+  "md5CacheOptions": {
+    "excludes": [],
+    "includes": [],
+    "replaceOnly": [],
+    "handleTemplateMd5Link": true
+  },
+  "mainBundleIsRemote": false,
+  "mainBundleCompressionType": "merge_dep",
+  "useSplashScreen": true,
+  "bundleCommonChunk": false,
+  "packAutoAtlas": true,
+  "startScene": "8553cc48-85c6-4914-8db4-40f4512a4eb8",
+  "outputName": "google-play",
+  "taskName": "google-play",
+  "scenes": [
+    {
+      "url": "db://assets/scene/main.scene",
+      "uuid": "8553cc48-85c6-4914-8db4-40f4512a4eb8"
+    },
+    {
+      "url": "db://assets/script/component/simplelist2/example/list_example.scene",
+      "uuid": "3db7aba0-bc9d-487e-a14d-896e61197c35"
+    }
+  ],
+  "wasmCompressionMode": false,
+  "binGroupConfig": {
+    "threshold": 16,
+    "enable": false
+  },
+  "packages": {
+    "google-play": {
+      "packageName": "xyz.swlgames.rogball",
+      "resizeableActivity": true,
+      "maxAspectRatio": "2.4",
+      "orientation": {
+        "portrait": true,
+        "upsideDown": false,
+        "landscapeRight": false,
+        "landscapeLeft": false
+      },
+      "apiLevel": 35,
+      "appABIs": [
+        "arm64-v8a"
+      ],
+      "useDebugKeystore": false,
+      "keystorePath": "D:\\key\\zumbia\\bzkc.jks",
+      "keystorePassword": "dtNqs5563f4mC84D0q0U",
+      "keystoreAlias": "bzkc",
+      "keystoreAliasPassword": "dtNqs5563f4mC84D0q0U",
+      "appBundle": true,
+      "androidInstant": false,
+      "googleBilling": true,
+      "playGames": true,
+      "inputSDK": false,
+      "isSoFileCompressed": false,
+      "remoteUrl": "",
+      "sdkPath": "",
+      "ndkPath": "",
+      "javaHome": "",
+      "javaPath": "",
+      "renderBackEnd": {
+        "vulkan": true,
+        "gles3": false,
+        "gles2": false
+      },
+      "swappy": true,
+      "adpf": true,
+      "customIcon": "custom",
+      "__version__": "1.0.1"
+    },
+    "cocos-service": {
+      "configID": "ca1c68",
+      "services": []
+    },
+    "biligame-builder": {
+      "isBiliGame": false,
+      "__version__": "1.0.3"
+    },
+    "wak_templater": {
+      "__version__": "1.0.0"
+    },
+    "native": {
+      "encrypted": false,
+      "xxteaKey": "2fjDJkqvRNBowx3h",
+      "compressZip": false,
+      "JobSystem": "none",
+      "__version__": "1.0.2"
+    }
+  },
+  "__version__": "1.3.9"
+}

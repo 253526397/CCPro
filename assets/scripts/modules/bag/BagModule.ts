@@ -1,5 +1,5 @@
 import { EventBus } from '../../core/EventBus';
-import { ModuleManager, type IGameModule } from '../../core/ModuleManager';
+import { type IGameModule } from '../../core/ModuleManager';
 import { BagEvents } from '../../events';
 
 /** 物品数量变化回调 */
@@ -43,6 +43,8 @@ export class BagModule implements IGameModule {
   onInit(): void {}
 
   onConfigLoaded(): void {}
+
+  onUserDataLoaded(): void {}
 
   onGameStart(): void {}
 
@@ -182,5 +184,3 @@ export class BagModule implements IGameModule {
 
   //#endregion
 }
-
-export const bagModule = ModuleManager.inst.register<BagModule>('BagModule', BagModule);

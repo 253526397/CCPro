@@ -1,0 +1,67 @@
+{
+    // 生产环境配置
+    // 模板文件(用这些模板文件替换掉项目中的文件,这个文件夹下的文件下的文件的相对路径对应的就是项目从根目录的相对路径，没有的情况下就不替换)
+    "templateFile":"project://buildTmp/google_play/buildBefore",
+
+
+    // 远程资源路径(不配置就不把远程资源复制到本地)
+    "remoteRes":"",
+    // 本地远程资源路径(不配置就不把远程资源复制到本地)
+    "localRemoteRes":"",
+
+
+    // 配置表源路径 (Excel 导表工具目录，不配置不走配置表打包流程)
+    "configPath": "",
+    // 平台配置地址
+    "configPlatform": "",
+    // 配置表输出路径
+    "configOutput": "",
+    // 输出文件名（含后缀）
+    "configOutputSuffix": ".dat",
+    // 是否加密输出 (JSON → pako压缩 → AES加密 → .dat)
+    "encrypt": true,
+    // 配置文件上传路径,不配置就跳过上传步骤
+    "configUploadPath":"",
+
+
+    // 图片压缩工具路径（支持句对路径，相对路径从项目根拼接，不配置不走图片压缩流程）
+    "compressassetsimage": "",
+
+
+    // cocosCreator的绝对路径，用来执行cocos命令（不配置不走cocos打包步骤）
+    "creatorPath":"C:/ProgramData/cocos/editors/Creator/3.8.8/CocosCreator.exe",
+    // cocosCreator构建配置文件路径（不配置不走cocos打包步骤）
+    "buildConfigPath":"project://build_config/buildConfig_google-play.json",
+    // 构建后需要替换的模板文件，目标路径是使用cocos构建的配置文件中的输出路径
+    "buildTemplatePath": "project://buildTmp/google_play/buildEnd",
+    // cocosCreator构建之后的上传路径,如果不配置就不上传
+    "buildUploadPath": "",
+
+
+    // android构建类型AAB/APK/BOTH（不配置不走android打包步骤，如果需要assetPack分包的话不支持Both模式）
+    "androidBuildType": "BOTH",
+    // android构建后的上传路径，如果没有配置就不上传
+    "androidUploadPath": "Y:/test/androidRelease",
+    // android构建的时候是否需要assetPack分包
+    "needAssetPack": false,
+    // android打包的时候的版本号
+    "versionCode": "7",
+    // android打包的时候的版本名称
+    "versionName": "1.07",
+
+    //  ftp上传文件的源路径,如果没有配置就不上传
+    "ftpSourcePath": "Y:/zumbia_web_500002",
+    // "ftpSourcePath": "",
+    //  ftp上传文件的目标路径
+    "ftpDestPath": "/bzkc_native_500002/v20260618",
+    //  ftp的host
+    "ftpHost": "resoriginal.jazpulse.com",
+    //  ftp的端口,""就是没有端口
+    "ftpPort": "",
+    //  ftp的账号
+    "ftpUser": "23sRtQ3zXm4G",
+    //  ftp的密码
+    "ftpPassword": "tYd7hb5GkRy4",
+    //  ftp的secure, true就是FTPS，false就是FTP
+    "ftpSecure": false,
+}

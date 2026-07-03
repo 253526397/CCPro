@@ -1,4 +1,4 @@
-import { _decorator, ccenum, Component, Node, Tween, UIOpacity, Vec3 } from 'cc';
+import { _decorator, ccenum, CCFloat, Node, Tween, UIOpacity, Vec3 } from 'cc';
 import type { OriginalProperty, TweenNodeProperty, TweenOpacityProperty } from './UITween';
 const { ccclass, property } = _decorator;
 enum UITweenEffectType {
@@ -15,12 +15,12 @@ ccenum(UITweenEffectType);
 export class UITweenEffect {
     @property({ type: UITweenEffectType })
     effectType: UITweenEffectType = UITweenEffectType.SCALE;
-    @property({ type: Number, visible: function (this: UITweenEffect) { return this.effectType == UITweenEffectType.SCALE; } })
+    @property({ type: CCFloat, visible: function (this: UITweenEffect) { return this.effectType == UITweenEffectType.SCALE; } })
     scaleStartValue: number = 0;
-    @property({ type: Number, visible: function (this: UITweenEffect) { return this.effectType == UITweenEffectType.OPACITY; } })
+    @property({ type: CCFloat, visible: function (this: UITweenEffect) { return this.effectType == UITweenEffectType.OPACITY; } })
     alphaStarValue: number = 0;
     @property({
-        type: Number,
+        type: CCFloat,
         visible: function (this: UITweenEffect) { return this.effectType != UITweenEffectType.OPACITY && this.effectType != UITweenEffectType.SCALE; }
     })
     moveValue: number = 0;

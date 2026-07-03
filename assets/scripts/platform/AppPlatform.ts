@@ -1,6 +1,10 @@
 import type {
-  IPlatform, IAdAPI, IIAPAPI, IAuthAPI,
-  IShareAPI, IStorageAPI, PlatformId, DeviceInfo,
+  DeviceInfo,
+  IAdAPI,
+  IAuthAPI,
+  IIAPAPI,
+  IPlatform,
+  IShareAPI, IStorageAPI, PlatformId,
 } from './IPlatform';
 
 class AppStorageAPI implements IStorageAPI {
