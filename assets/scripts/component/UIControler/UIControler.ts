@@ -1,11 +1,11 @@
-import { _decorator, CCInteger, Component, Node } from 'cc';
+import { _decorator, CCBoolean, CCInteger, Component, Node } from 'cc';
 import { UIControlerGroup } from './UIControlerGroup';
 const { ccclass, property, executeInEditMode } = _decorator;
 
 @ccclass('UIControler')
 @executeInEditMode(true)
 export class UIControler extends Component {
-    @property(Boolean)
+    @property(CCBoolean)
     runInEdit:boolean = false;
     @property({type:CCInteger, visible:false})
     private _statuIndex: number = 0;

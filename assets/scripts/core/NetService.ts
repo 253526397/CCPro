@@ -1,5 +1,5 @@
-import { EventBus } from './EventBus';
-import { NetEvents } from '../events';
+import { NetEvents } from '../events/EventConst';
+import EventManager from './EventManager';
 
 /** 标准服务端响应格式 */
 export interface NetResponse<T = any> {
@@ -25,7 +25,6 @@ export class NetService {
   }
 
   private baseUrl: string = '';
-  private bus: EventBus = EventBus.inst;
 
   /** 设置 API 根地址，如 "https://api.example.com" */
   setBaseUrl(url: string): void {
@@ -80,7 +79,7 @@ export class NetService {
       }
     }
 
-    this.bus.emit(NetEvents.REQUEST_FAILED, { url, error: lastError?.message });
+    EventManager.emit(NetEvents.REQUEST_FAILED, url, lastError?.message);
     return { code: -1, data: null as any, message: lastError?.message || 'Network error' };
   }
 }

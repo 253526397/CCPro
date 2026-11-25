@@ -1,8 +1,11 @@
-// 自动生成于 excel 时间: 2026-06-24T11:01:32.844Z
+// 自动生成于 excel 时间: 2026-07-07T08:02:55.543Z
 // 所有配置表统一入口
 // 请勿手动编辑此文件
-import { ConfigItem, ConfigItemMeta } from './ConfigItem';
-import { ConfigOpenCondition, ConfigOpenConditionMeta } from './ConfigOpenCondition';
+import { ItemConfig, ItemConfigMeta } from './ItemConfig';
+import { LevelConfig, LevelConfigMeta } from './LevelConfig';
+import { OpenConditionConfig, OpenConditionConfigMeta } from './OpenConditionConfig';
+import { SkillConfig, SkillConfigMeta } from './SkillConfig';
+import { ConfigConstants } from './ConfigConstants';
 
 export class Config {
   /**
@@ -11,8 +14,11 @@ export class Config {
    */
   public static parseData(jsonStr: string): void {
     const allData: Record<string, any> = JSON.parse(jsonStr);
-    Config.loadTable(allData['ConfigItem'], ConfigItemMeta, ConfigItem);
-    Config.loadTable(allData['ConfigOpenCondition'], ConfigOpenConditionMeta, ConfigOpenCondition);
+    Config.loadTable(allData['ItemConfig'], ItemConfigMeta, ItemConfig);
+    Config.loadTable(allData['LevelConfig'], LevelConfigMeta, LevelConfig);
+    Config.loadTable(allData['OpenConditionConfig'], OpenConditionConfigMeta, OpenConditionConfig);
+    Config.loadTable(allData['SkillConfig'], SkillConfigMeta, SkillConfig);
+    if (allData['Config']) ConfigConstants.parseData(allData['Config']);
   }
 
   /**

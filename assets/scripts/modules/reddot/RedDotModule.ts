@@ -1,6 +1,6 @@
-import { EventBus } from '../../core/EventBus';
+import EventManager from '../../core/EventManager';
 import { type IGameModule } from '../../core/ModuleManager';
-import { RedDotEvents } from '../../events';
+import { RedDotEvents } from '../../events/EventConst';
 import { RedDotData } from './RedDotData';
 
 /** 红点显示对象接口 — 视图层实现此接口以响应计数变化 */
@@ -23,7 +23,6 @@ export interface IRedDotDisplay {
  * reddot.removeDisplay('home/friends', this);    // onDestroy
  */
 export class RedDotModule implements IGameModule {
-  private bus: EventBus = EventBus.inst;
   private data: RedDotData = new RedDotData();
   /** path → 已注册的显示对象集合 */
   private displays: Map<string, Set<IRedDotDisplay>> = new Map();
@@ -105,7 +104,7 @@ export class RedDotModule implements IGameModule {
       const visible = count > 0;
       set.forEach(d => d.updateVisible(visible));
     }
-    this.bus.emit(RedDotEvents.COUNT_CHANGED, { path, count });
+    EventManager.emit(RedDotEvents.COUNT_CHANGED, path, count);
   }
 
   private getParentPath(path: string): string | null {

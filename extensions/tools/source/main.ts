@@ -77,7 +77,7 @@ export const methods: { [key: string]: (...any: any) => any } = {
     /** 执行 config/exceltools.bat 导出 Excel 配置 */
     configExport() {
         const projectPath = getProjectPath();
-        const batPath = path.join(projectPath, 'config', 'exceltools.bat');
+        const batPath = path.join(projectPath, 'tools', 'config', 'exceltools.bat');
 
         console.log(`[tools] Running: ${batPath}`);
 

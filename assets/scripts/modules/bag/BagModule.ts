@@ -1,6 +1,6 @@
-import { EventBus } from '../../core/EventBus';
+import EventManager from '../../core/EventManager';
 import { type IGameModule } from '../../core/ModuleManager';
-import { BagEvents } from '../../events';
+import { BagEvents } from '../../events/EventConst';
 
 /** 物品数量变化回调 */
 export type ItemCountChangeCallback = (itemId: number, count: number) => void;
@@ -29,7 +29,6 @@ export interface ItemData {
  * const total = bag.getItemCount(1001);           // 查询某物品总数
  */
 export class BagModule implements IGameModule {
-  private bus: EventBus = EventBus.inst;
 
   /** uid → ItemData */
   private items: Map<number, ItemData> = new Map();
@@ -98,7 +97,7 @@ export class BagModule implements IGameModule {
       item.extra = extra;
     }
     this.items.set(item.uid, item);
-    this.bus.emit(BagEvents.ITEM_ADDED, { item });
+    EventManager.emit(BagEvents.ITEM_ADDED, item);
     this.notifyCountChange(itemId);
     return item;
   }
@@ -120,11 +119,11 @@ export class BagModule implements IGameModule {
     if (count === undefined || count >= item.count) {
       // 完全移除
       this.items.delete(uid);
-      this.bus.emit(BagEvents.ITEM_REMOVED, { uid, itemId });
+      EventManager.emit(BagEvents.ITEM_UPDATED, uid, itemId);
     } else {
       // 部分移除
       item.count -= count;
-      this.bus.emit(BagEvents.ITEM_UPDATED, { item });
+      EventManager.emit(BagEvents.ITEM_UPDATED, item);
     }
     this.notifyCountChange(itemId);
     return true;
@@ -148,7 +147,7 @@ export class BagModule implements IGameModule {
     if (changes.extra !== undefined) {
       item.extra = changes.extra;
     }
-    this.bus.emit(BagEvents.ITEM_UPDATED, { item });
+    EventManager.emit(BagEvents.ITEM_UPDATED, item);
     this.notifyCountChange(item.itemId);
     return true;
   }

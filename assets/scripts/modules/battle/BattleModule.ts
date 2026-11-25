@@ -1,7 +1,7 @@
-import { EventBus } from '../../core/EventBus';
+import EventManager from '../../core/EventManager';
 import { GameData } from '../../core/GameData';
 import { type IGameModule } from '../../core/ModuleManager';
-import { BattleEvents } from '../../events';
+import { BattleEvents } from '../../events/EventConst';
 
 export enum BattleState {
   IDLE = 'idle',
@@ -10,7 +10,6 @@ export enum BattleState {
 }
 
 export class BattleModule implements IGameModule {
-  private bus: EventBus = EventBus.inst;
   private gd: GameData = GameData.inst;
   state: BattleState = BattleState.IDLE;
 
@@ -26,11 +25,11 @@ export class BattleModule implements IGameModule {
 
   start(stageId: number): void {
     this.state = BattleState.FIGHTING;
-    this.bus.emit(BattleEvents.STARTED, { stageId });
+    EventManager.emit(BattleEvents.STARTED, stageId);
   }
 
   finish(win: boolean): void {
     this.state = BattleState.FINISHED;
-    this.bus.emit(BattleEvents.FINISHED, { win });
+    EventManager.emit(BattleEvents.FINISHED, win);
   }
 }

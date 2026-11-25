@@ -7,7 +7,7 @@
     // 远程资源路径(不配置就不把远程资源复制到本地)
     "remoteRes":"",
     // 本地远程资源路径(不配置就不把远程资源复制到本地)
-    "localRemoteRes":"project://assets/resources/hbw_wx_6",
+    "localRemoteRes":"",
 
 
     // 配置表源路径 (Excel 导表工具目录，不配置不走配置表打包流程)

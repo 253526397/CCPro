@@ -1,9 +1,11 @@
-import { EventBus } from './EventBus';
 import type {
-  HeroData, EquipData, StageProgressData, QuestProgress,
-  GameSettings, SaveData,
+  EquipData,
+  GameSettings,
+  HeroData,
+  QuestProgress,
+  SaveData,
+  StageProgressData,
 } from '../data';
-import { ShopEvents } from '../events';
 
 const DEFAULT_HERO: HeroData = {
   level: 1,
@@ -46,7 +48,6 @@ export class GameData {
   lastSaveTime: number = 0;
 
   private dirtyKeys: Set<string> = new Set();
-  private bus: EventBus = EventBus.inst;
 
   /** 当前角色数据（单英雄场景） */
   get hero(): HeroData {
@@ -62,7 +63,6 @@ export class GameData {
   setCurrency(type: string, amount: number): void {
     this._currencies.set(type, Math.max(0, amount));
     this.markDirty('currencies');
-    this.bus.emit(ShopEvents.CURRENCY_CHANGED, { type, amount: this._currencies.get(type) });
   }
 
   /** 增加货币（正数加、负数减） */

@@ -1,5 +1,4 @@
-import { ConfigOpenCondition, type IConfigOpenCondition } from '../../config/ConfigOpenCondition';
-import { EventBus } from '../../core/EventBus';
+import { OpenConditionConfig, type IOpenConditionConfig } from '../../config/OpenConditionConfig';
 import { type IGameModule } from '../../core/ModuleManager';
 
 /** 条件满足回调，返回是否开启 */
@@ -17,7 +16,6 @@ export type ConditionCallback = (id: number, isOpen: boolean) => void;
  * oc.onConditionMet(2, (id) => { unlock(id); return true; });  // 注册条件满足钩子
  */
 export class OpenConditionModule implements IGameModule {
-  private bus: EventBus = EventBus.inst;
 
   /** 当前关卡 */
   private currentStage: number = 0;
@@ -135,15 +133,15 @@ export class OpenConditionModule implements IGameModule {
 
   /** 重新评估所有配置条件，满足时触发钩子+事件 */
   private evaluateAll(): void {
-    for (const key in ConfigOpenCondition.dataMap) {
-      const config = ConfigOpenCondition.dataMap[key];
+    for (const key in OpenConditionConfig.dataMap) {
+      const config = OpenConditionConfig.dataMap[key];
       const id = config.id!;
       this.evaluate(id, config);
     }
   }
 
   /** 评估单个条件 */
-  private evaluate(id: number, config: IConfigOpenCondition): void {
+  private evaluate(id: number, config: IOpenConditionConfig): void {
     if (this.met.has(id)) return;
 
     if (this.checkCondition(config)) {
@@ -158,7 +156,7 @@ export class OpenConditionModule implements IGameModule {
   }
 
   /** 检查单条配置是否满足 */
-  private checkCondition(config: IConfigOpenCondition): boolean {
+  private checkCondition(config: IOpenConditionConfig): boolean {
     if (config.stage !== undefined && this.currentStage < config.stage) return false;
     if (config.level !== undefined && this.currentLevel < config.level) return false;
     if (config.taskId !== undefined && !this.completedTasks.has(config.taskId)) return false;

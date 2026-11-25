@@ -1,0 +1,80 @@
+{
+  // ============================================================
+  //  Excel → JSON + 代码 转换工具 配置文件
+  //  支持 JSON5 语法：可使用 // 注释、尾逗号
+  //  优先级：CLI 参数 > 本文件 > 内置默认值
+  // ============================================================
+
+  // Excel 行映射：定义第几行分别是什么（0-based，即第1行 = 0）
+  "rowMapping": {
+    "fieldNames": 1,   // 字段名所在行（第2行=英文字段名: id, name, type...）
+    "dataTypes": 2,   // 无类型行（-1 = 所有列默认 string，跳过枚举检测）
+    "comments": 0,     // 注释说明所在行（第1行=中文描述: 道具id, 道具名称...）
+    "dataStart": 3,    // 数据起始行（第3行开始是实际数据）
+  },
+
+  // 默认生成的目标语言，当前支持的语言有：typescript, csharp, java, python, go, php
+  "languages": [
+    "typescript",
+  ],
+
+  // 输出目录配置
+  "output": {
+    "json": "./output/json",   // JSON 数据文件输出目录
+    "code": "./output/code",   // 代码文件输出目录
+    "codeLangSubDir": false,   // ← 关掉语言子目录
+    // jsonFormat: "verbose" = 完整结构带缩进 / "compact" = 压缩短键名
+    "jsonFormat": "compact",
+    // mergeJson: false = 每个表独立文件 / true = 所有表合并到 config.json
+    "mergeJson": true,
+  },
+
+  // 模板配置
+  "templates": {
+    "customDir": null,  // 自定义模板目录（null = 使用内置模板）
+    "overrides": {},    // 单独覆盖某个模板文件: { "typescript/interface.liquid": "路径" }
+  },
+
+  // 枚举自动检测：从数据列中收集唯一值，按字母排序自动编号
+
+  // 排除的工作表名称（不会被解析为数据表）
+  "excludeSheets": [],
+
+  // 命名风格：sheetNameToTableName（表名→类名） / fieldNameToPropertyName（字段→属性名）
+  // 可选值: "PascalCase" | "camelCase" | "snake_case" | "keep"
+  "naming": {
+    "sheetNameToTableName": "PascalCase",
+    "fieldNameToPropertyName": "camelCase",
+  },
+
+  // 各语言专属设置
+  "languageSettings": {
+    "typescript": {
+      "generateEnums": true,     // 是否生成枚举
+      "useStringEnum": false,    // false = 数值枚举, true = 字符串枚举
+    },
+    "csharp": {
+      "namespace": "GameConfig", // 命名空间
+      "generateEnums": true,
+      "useJsonProperty": true,   // 是否添加 [JsonProperty] 特性
+    },
+    "java": {
+      "package": "com.game.config", // 包名
+      "generateEnums": true,
+      "useLombok": false,           // 是否使用 Lombok 注解
+      "useJackson": false,          // 是否使用 Jackson 注解
+    },
+  },
+
+  // 是否从 Excel 自动检测枚举定义（推荐开启）
+  "autoDetectEnums": true,
+
+  // 加密配置
+  "encrypt": {
+    "enabled": true,               // 是否启用加密（JSON → .dat）
+    "key": "mandateofheaven",        // AES 加密密钥，请改成自己的
+  },
+
+  // 是否默认输出详细日志（等同于 CLI 的 -v 参数）
+  "verbose": false,
+}

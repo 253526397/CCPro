@@ -1,4 +1,4 @@
-import { _decorator, ccenum, Component, easing, Node, tween, UIOpacity, Vec3 } from 'cc';
+import { _decorator, CCBoolean, ccenum, CCFloat, Component, easing, Node, tween, UIOpacity, Vec3 } from 'cc';
 import { UITweenEffect } from './UITweenEffect';
 import { UITweenGroup } from './UITweenGroup';
 const { ccclass, property } = _decorator;
@@ -38,13 +38,13 @@ export class UITween extends Component {
     effects: UITweenEffect[] = [];
     @property({type:UITweenEasingType})
     easingType: UITweenEasingType = UITweenEasingType.none;
-    @property({ type: Number, tooltip: 'UI打开的时候缓动延迟时间' })
+    @property({ type: CCFloat, tooltip: 'UI打开的时候缓动延迟时间' })
     delay: number = 0;
-    @property({ type: Number, tooltip: '每个缓动对象的缓动间隔时间' })
+    @property({ type: CCFloat, tooltip: '每个缓动对象的缓动间隔时间' })
     gap: number = 0.05;
-    @property({ type: Number, tooltip: '每个缓动对象的缓动持续时间' })
+    @property({ type: CCFloat, tooltip: '每个缓动对象的缓动持续时间' })
     duration: number = 0.3;
-    @property(Boolean)
+    @property(CCBoolean)
     autoPlay: boolean = true;
 
     private targetList: Node[] = [];

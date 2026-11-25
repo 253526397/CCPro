@@ -1,4 +1,4 @@
-import { _decorator, ccenum, Component, Node } from 'cc';
+import { _decorator, ccenum, Node } from 'cc';
 const { ccclass, property } = _decorator;
 
 export enum UITweenTargetType{

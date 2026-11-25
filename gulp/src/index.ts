@@ -7,8 +7,9 @@ import { createApplyTemplateTask } from './tasks/applyTemplate';
 import { createCocosBuildTask } from './tasks/cocosBuild';
 import { createCompressAssetsTask } from './tasks/compressAssets';
 import { createPackConfigTablesTask } from './tasks/configPack';
-import { createSyncRemoteResTask } from './tasks/syncRemoteRes';
 import { createFtpUploadTask } from './tasks/ftpUpload';
+import { createSyncRemoteResTask } from './tasks/syncRemoteRes';
+import { createVersionGeneratorTask } from './tasks/versionGenerator';
 import { getArgv } from './utils/argv';
 
 // ============================================================
@@ -131,6 +132,11 @@ export const ftpUpload: TaskFunction = (done) => {
     }
     createFtpUploadTask(configName)(done);
 }
+
+/**热更新 manifest 生成任务*/
+export const versionGenerator: TaskFunction = (done) => {
+    createVersionGeneratorTask()(done);
+};
 
 // ============================================================
 // 通用任务：通过 --config 参数动态选择配置

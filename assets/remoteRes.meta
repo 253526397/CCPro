@@ -1,0 +1,12 @@
+{
+  "ver": "1.2.0",
+  "importer": "directory",
+  "imported": true,
+  "uuid": "1937e284-8c34-41ce-a49a-5b2c6e4566b0",
+  "files": [],
+  "subMetas": {},
+  "userData": {
+    "isBundle": true,
+    "bundleName": "remoteRes"
+  }
+}
